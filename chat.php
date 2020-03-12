@@ -43,8 +43,9 @@ if (isset($_GET['logout'])) {
         "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Chat - Customer Module</title>
+    <title>Chat </title>
     <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.css">
 </head>
 <body>
 <?php
@@ -70,14 +71,19 @@ else{
         ?>
     </div>
     <form name="message" action="">
-        <input name="usermsg" type="text" id="usermsg" size="63"/>
+<!--        <input name="usermsg" type="text" id="usermsg" size="63"/>-->
+        <textarea id="usermsg"  id="usermsg" type="text"></textarea>
+
         <input name="submitmsg" type="submit" id="submitmsg" value="Send"/>
     </form>
 </div>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#usermsg").emojioneArea();
         console.log("dsds");
         //If user wants to end session
         $("#exit").click(function () {
@@ -90,7 +96,7 @@ else{
         $("#submitmsg").click(function () {
             var clientmsg = $("#usermsg").val();
             $.post("post.php", {text: clientmsg});
-            $("#usermsg").attr("value", "");
+            $("#usermsg").html("");
             return false;
         });
     });
